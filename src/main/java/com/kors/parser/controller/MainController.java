@@ -10,7 +10,7 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String parseAll() {
         return "home";
     }

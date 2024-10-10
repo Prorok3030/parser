@@ -50,7 +50,7 @@
             <td th:text="${el.date}"/>
             <td th:text="${el.sourceName}"/>
             <td><a class="btn btn-primary" th:href="@{${el.sourceLink}}" role="button">К источнику</a></td>
-            <td><a class="btn btn-success" th:href="@{/publicationSave/(tittle=${el.title}, text=${el.text}, image=${el.image}, date=${el.date}, sourceLink=${el.sourceLink}, sourceName=${el.sourceName})}" role="button">Сохранить</a></td>
+            <td><a class="btn btn-success" th:href="@{/publicationSave/(title=${el.title}, text=${el.text}, image=${el.image}, date=${el.date}, sourceLink=${el.sourceLink}, sourceName=${el.sourceName})}" role="button">Сохранить</a></td>
         </tr>
     </table>
 </div>
