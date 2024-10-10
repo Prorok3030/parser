@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="header">
+    <div class="container-fluid bg-success text-dark bg-opacity-50">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-1 text-dark">
+            <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <img src="https://cdn3.iconfinder.com/data/icons/finance-system-media-ui-element-s25/512/news-1024.png" alt="..." width="50">
+                <h3>&numsp;Парсер</h3>
+            </a>
+
+            <ul class="nav nav-pills">
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/home">Главная</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/publications">Новости</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/profile">Профиль</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/about">О приложении</a>
+                <a href="/publications" class="btn btn-success" role="button">Войти</a>
+            </ul>
+        </header>
+    </div>
+</div>

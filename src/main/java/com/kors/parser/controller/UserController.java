@@ -6,11 +6,14 @@ import com.kors.parser.repository.RoleRepository;
 import com.kors.parser.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.Map;
 
@@ -43,5 +46,12 @@ public class UserController {
         userEntity.setRole(role);
         userService.save(userEntity);
         return "redirect:/login";
+    }
+
+    @GetMapping("/profile")
+    public String Profile (Principal principal, Model model){
+        UserEntity user = userService.findByLogin(principal.getName());
+        model.addAttribute("user", user);
+        return "profile";
     }
 }
