@@ -21,7 +21,11 @@ public class UserService {
     }
 
     public UserEntity findByLogin(String login) {
-        return userRepository.findByLogin(login).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+        return userRepository.findByLogin(login).orElse(null);
+    }
+
+    public  UserEntity findById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     public void save(UserEntity user){

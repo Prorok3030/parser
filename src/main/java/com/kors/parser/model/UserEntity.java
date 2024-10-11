@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="users")
 public class UserEntity {
@@ -20,12 +23,19 @@ public class UserEntity {
     @Column(unique = true)
     private String mail;
 
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinTable(name = "user_publications", joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "publication_id") } )
+    private List<Publication> favorites = new ArrayList<>();
+
     public UserEntity() {
     }
 
-    public UserEntity(String login, String password, Role role, String mail) {
+    public UserEntity(String login, String password, List<Publication> favorites, Role role, String mail) {
         this.login = login;
         this.password = password;
+        this.favorites = favorites;
         this.role = role;
         this.mail = mail;
     }
@@ -68,5 +78,13 @@ public class UserEntity {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public List<Publication> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Publication> favorites) {
+        this.favorites = favorites;
     }
 }

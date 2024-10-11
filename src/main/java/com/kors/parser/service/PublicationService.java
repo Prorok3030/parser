@@ -1,6 +1,7 @@
 package com.kors.parser.service;
 
 import com.kors.parser.model.Publication;
+import com.kors.parser.model.UserEntity;
 import com.kors.parser.repository.PublicationRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -51,5 +52,9 @@ public class PublicationService {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public List<Publication> findByUsers(List<UserEntity> users) {
+        return publicationRepository.findByUsers(users);
     }
 }
