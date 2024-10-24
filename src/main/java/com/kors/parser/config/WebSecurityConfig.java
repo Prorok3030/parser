@@ -42,7 +42,7 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/registration", "/home").permitAll()
+                        .requestMatchers("/registration", "/home", "/sendPayment").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

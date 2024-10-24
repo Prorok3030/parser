@@ -28,16 +28,19 @@ public class UserEntity {
     @JoinTable(name = "user_publications", joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "publication_id") } )
     private List<Publication> favorites = new ArrayList<>();
+    private Boolean subscribed = false;
 
     public UserEntity() {
     }
 
-    public UserEntity(String login, String password, List<Publication> favorites, Role role, String mail) {
+    public UserEntity(Long id, String login, String password, Role role, String mail, List<Publication> favorites, Boolean subscribed) {
+        this.id = id;
         this.login = login;
         this.password = password;
-        this.favorites = favorites;
         this.role = role;
         this.mail = mail;
+        this.favorites = favorites;
+        this.subscribed = subscribed;
     }
 
     public Long getId() {
@@ -86,5 +89,13 @@ public class UserEntity {
 
     public void setFavorites(List<Publication> favorites) {
         this.favorites = favorites;
+    }
+
+    public Boolean getSubscribed() {
+        return subscribed;
+    }
+
+    public void setSubscribed(Boolean subscribed) {
+        this.subscribed = subscribed;
     }
 }
