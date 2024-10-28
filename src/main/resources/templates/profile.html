@@ -21,7 +21,8 @@
                          alt="..." width="130" class="rounded mb-2 img-thumbnail">
                 </div>
                 <a th:href="@{/profileEdit/{id}(id=${user.id})}" class="btn btn-outline-dark btn-sm btn-block">Редактировать</a></p>
-                <a th:href="@{/favorites/{id}(id=${user.id})}" class="btn btn-outline-dark btn-sm btn-block">Избранное</a>
+                <a th:href="@{/favorites/{id}(id=${user.id})}" class="btn btn-outline-dark btn-sm btn-block">Избранное</a></p>
+                <a href="/admin/allUsers" th:if="${user.role.name == 'ADMIN'}" class="btn btn-outline-dark btn-sm btn-block">Пользователи</a>
             </div>
         </div>
         <div class="mb-2 ms-2">

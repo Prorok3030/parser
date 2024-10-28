@@ -26,7 +26,7 @@ public class PaymentRESTController {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         // Создаем объект PaymentRequest с данными для отправки
-        PaymentRequest paymentRequest = new PaymentRequest(new PaymentAmount(value, "RUB"), new PaymentConfirmation("embedded"), true, "Заказ №10");
+        PaymentRequest paymentRequest = new PaymentRequest(new PaymentAmount(value, "RUB"), new PaymentConfirmation("embedded"), true, "Заказ №23");
 
         // Создаем объект HttpEntity с телом запроса и заголовками
         HttpEntity<PaymentRequest> requestEntity = new HttpEntity<>(paymentRequest, headers);

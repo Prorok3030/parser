@@ -8,6 +8,7 @@ import com.kors.parser.service.PublicationService;
 import com.kors.parser.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -55,6 +56,30 @@ public class UserController {
         userService.save(userEntity);
         return "redirect:/login";
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/admin/allUsers")
+    public String allUsers(Model model){
+        List<UserEntity> userList = userService.getAllUsers();
+        model.addAttribute("userList", userList);
+        return "allUsers";
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/admin/userDelete/{id}")
+    public String userDelete(@PathVariable("id") long id, Principal principal){
+        UserEntity user = userService.findByLogin(principal.getName());
+        UserEntity deletableUser = userService.findById(id);
+        if (user.getId() == deletableUser.getId()){
+            userService.delete(id);
+            return "redirect:/logout";
+        }
+        else {
+            userService.delete(id);
+            return "redirect:/admin/allUsers";
+        }
+    }
+
 
     @GetMapping("/profileEdit/{id}")
     public String profileEdit(@PathVariable Long id, Model model){
